@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "name": "ts-node",
+      "type": "node",
+      "request": "launch",
+      "program": "/Users/apple/.nvm/versions/node/v10.15.3/bin/ts-node",
+      "args": [
+        "${relativeFile}"
+      ],
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
+    }
+  ]
+}

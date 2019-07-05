@@ -53,34 +53,36 @@ exports.__esModule = true;
 // console.log(p.setname('宇智波四')); //true
 // console.log(p.getName()); //宇智波四
 // ======类的继承 extends super========
-// {
-//   class Person {
-//     name: string
-//     constructor(name: string) {
-//       this.name = name
-//     }
-//     run(): void {
-//       console.log(`${this.name}在运动!`);
-//     }
-//   }
-//   var q = new Person('尼古拉斯赵四')
-//   // console.log(q.run()); // 尼古拉斯赵四在运动!
-//   class Man extends Person {
-//     constructor(name: string) {
-//       super(name) //初始化父类的构造函数
-//     }
-//     run(): string {
-//       return `${this.name}在子类里面运动！`
-//     }
-//     work(): void {
-//       console.log(this.name + '在工作！');
-//     }
-//   }
-//   var w = new Man('宇智波四')
-//   console.log(w.run()) // 宇智波四在运动!
-//   console.log(w.work()) // 宇智波四在工作！
-//   console.log(w.run()); // 宇智波四在运动!
-// }
+{
+    var Person = /** @class */ (function () {
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.run = function () {
+            console.log(this.name + "\u5728\u5065\u8EAB\u623F\u8FD0\u52A8!");
+        };
+        return Person;
+    }());
+    var q = new Person('尼古拉斯赵四');
+    // console.log(q.run()); // 尼古拉斯赵四在运动!
+    var Man = /** @class */ (function (_super) {
+        __extends(Man, _super);
+        function Man(name) {
+            return _super.call(this, name) || this; //初始化父类的构造函数
+        }
+        Man.prototype.run = function () {
+            // return `${this.name}在子类里面运动！`
+            console.log(_super.prototype.run.call(this));
+        };
+        Man.prototype.work = function () {
+            console.log(this.name + '在工作！');
+        };
+        return Man;
+    }(Person));
+    var w = new Man('宇智波四');
+    console.log(w.run()); // 宇智波四在子类里面运动！
+    console.log(w.work()); // 宇智波四在工作！
+}
 // =======类里面的修饰符 public protected private=======
 /*
   public 公有 再当前类内部 子类 类外部都可以使用
@@ -166,38 +168,35 @@ exports.__esModule = true;
   注意！abstract抽象方法只能放在抽象类里面
   理解～ 抽象类和抽象方法被用来定义标准 也就是 Animal这个类要求他的子类必须包含eat方法！
 */
-var Animal = /** @class */ (function () {
-    function Animal(name) {
-        this.name = name;
-    }
-    return Animal;
-}());
-// var a = new Animal
-// Cannot create an instance of an abstract class.ts(2511)
-var Dog = /** @class */ (function (_super) {
-    __extends(Dog, _super);
-    function Dog(name) {
-        return _super.call(this, name) || this;
-    }
-    Dog.prototype.eat = function () {
-        console.log(this.name + '吃粮食!');
-    };
-    return Dog;
-}(Animal));
-var h = new Dog('哈巴狗');
-console.log(h.eat()); //哈巴狗吃粮食!
-var Cat = /** @class */ (function (_super) {
-    __extends(Cat, _super);
-    function Cat(name) {
-        return _super.call(this, name) || this;
-    }
-    Cat.prototype.run = function () { };
-    Cat.prototype.eat = function () {
-        console.log(this.name + '吃老鼠！');
-    };
-    return Cat;
-}(Animal));
-// cat类故意不实现eat方法，出现以下报错
-// Non-abstract class 'Cat' does not implement inherited abstract member 'eat' from class 'Animal'.ts(2515)
-var c = new Cat('虎妞');
-console.log(c.eat()); //虎妞吃老鼠！
+// abstract class Animal {
+//   public name: string
+//   constructor (name: string) {
+//     this.name = name
+//   }
+//   abstract eat():any; // 抽象方法
+// }
+// // var a = new Animal
+// // Cannot create an instance of an abstract class.ts(2511)
+// class Dog extends Animal { // 抽象类的子类必须实现抽象类里面的抽象方法
+//   constructor(name: string) {
+//     super(name)
+//   }
+//   eat() {
+//     console.log(this.name + '吃粮食!');
+//   }
+// }
+// var h = new Dog('哈巴狗')
+// console.log(h.eat()); //哈巴狗吃粮食!
+// class Cat extends Animal {
+//   constructor(name: string) {
+//     super(name)
+//   }
+//   run () {}
+//   eat() {
+//     console.log(this.name + '吃老鼠！');
+//   }
+// } 
+// // cat类故意不实现eat方法，出现以下报错
+// // Non-abstract class 'Cat' does not implement inherited abstract member 'eat' from class 'Animal'.ts(2515)
+//  var c = new Cat('虎妞')
+// console.log(c.eat()); //虎妞吃老鼠！
