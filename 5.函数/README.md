@@ -1,7 +1,5 @@
 # 函数
 
-标签（空格分隔）： Typescript
-
 ---
 
 ## 要点
@@ -76,7 +74,7 @@ fn3() // 这里的this是什么？undefined
 
 ts中的箭头函数和ES6的一样
 
-```
+```js
 let fn = (a: number, b: number): number => {
     return a + b
 }
@@ -84,7 +82,7 @@ let fn = (a: number, b: number): number => {
 
 箭头函数的简写，去掉花括号可以简化掉return（如果只有一行代码的话）
 
-```
+```js
 let fn = (a: number, b: number): number => a + b
 ```
 
@@ -92,7 +90,7 @@ let fn = (a: number, b: number): number => a + b
 
 ## 函数声明（TS）
 
-```
+```js
 // 函数声明
 function fn(x: Type, y: Type): Type {}
 
@@ -105,7 +103,7 @@ var fn: (x: Type, y: Type) => Type = (x, y) => {}
 
 定义函数有函数声明和函数表达式两种形式。定义函数的参数和返回值可以指定其类型；当调用函数时，传入参数类型必须与定义函数参数类型保持一致。
 
-```
+```js
 // 函数声明法
 function run(x: number, y: number): number {
     return x + y;
@@ -124,7 +122,7 @@ run2(1, 2);
 
 **函数表达式法另外一种写法**
 
-```
+```js
 var run3: (x: number, y: number) => string = function(x: number, y: number): string{
     return 'run3';
 }
@@ -133,7 +131,7 @@ run3(1, 2);
 
 - 当给变量run3指定类型的时候，应该是函数的参数和返回值的约束类型。如果用后面学到的ts类型推论，可以简写为：
 
-```
+```js
 var run4: (x: number, y: number) => string = function(x, y){ // 类型推论可以确定函数的参数和返回值类型，也就可以省略类型指定
     return 'run4';
 }
@@ -142,7 +140,7 @@ run4(1, 2);
 
 - 函数没有返回值用void类型指定返回值类型
 
-```
+```js
 function voidFnc(): void{
     console.log('没有返回值的方法用void')
 }
@@ -153,7 +151,7 @@ voidFnc();
 
 需要注意，可选参数必须配置在必选参数的后面，否则会报错，如下age红色下划线报错：
 
-```
+```js
 const getInfo = function(name?: string, age: number): string {
   if (age) {
     return `我的名字是${name},今年${age}岁了！`
@@ -170,7 +168,7 @@ getInfo('gaogao', 25)
 
 ES5里面无法设置默认参数（`var a = 'hello' || null`），ES6和ts中可以设置
 
-```
+```js
 const getInfo = function(name: string, age: number=33): string {
   if (age) {
     return `我的名字是${name},今年${age}岁了！`
@@ -187,7 +185,7 @@ console.log(getInfo('gaogao'))
 
 当有很多参数时候或参数个数不确定，可以用三点运算符
 
-```
+```js
 // sum参数传过来的是一个数组
 function sum(...result: number[]): number {
     var sum = 0;
@@ -231,7 +229,7 @@ console.log(sum(1,2,3,4,5)) //15
 
 es5中同名函数，后面会覆盖前面的函数，ts中则不会：
 
-```
+```js
 function overloadingFn(x: number, y: number): number;
 function overloadingFn(x: string, y: string): string;
 

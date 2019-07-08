@@ -3,21 +3,19 @@
 
 # 配置准备
 
-标签（空格分隔）： Typescript
-
 ---
 
 node的安装就不说了，这个必须有。
 
 配置淘宝源，或者安装nrm，来方便切换npm源的版本（推荐后者）
 
-```
+```js
 npm config set registry https://registry.npm.taobao.org/
 ```
 
 安装
 
-```
+```js
 npm install typescript@2.9.2 -g
 npm install ts-node@7.0.0 -g // 让node支持ts
 ```
@@ -29,7 +27,7 @@ npm install ts-node@7.0.0 -g // 让node支持ts
 1. 安装[ts-node](https://www.npmjs.com/package/ts-node)，直接在命令行环境下敲ts代码，和node运行环境类似；
 2. 创建一个目录 >>> 创建`.vscode`目录 >>> 创建`launch.json`文件，在文件内这么写：
 
-    ```
+    ```js
      {
      "configurations": [
              {
@@ -50,7 +48,7 @@ npm install ts-node@7.0.0 -g // 让node支持ts
 
 在终端中输入tsc --init：它是一个TypeScript项目的配置文件，可以通过读取它来设置TypeScript编译器的编译参数
 
-```
+```js
 {
   "compilerOptions": {
 
@@ -107,7 +105,7 @@ npm install ts-node@7.0.0 -g // 让node支持ts
 
 还可以指定不要被编译的文件
 
-```
+```js
 {
   "files": [
     "./some/file.ts"
@@ -117,7 +115,7 @@ npm install ts-node@7.0.0 -g // 让node支持ts
 ```
 可以使用 include 和 exclude 选项来指定需要包含的文件，和排除的文件
 
-```
+```js
 {
   "include": [
     "./folder"
@@ -151,7 +149,7 @@ chmod +x 1.ts
 
 这样，我们就可以通过给cmd.ts文件中打印process.argv，来获取到命令行参数了！
 
-```
+```js
 ┌─(~/TypeScript/tsdemo)────────────────────────────────────────────(gaohang@isaacgao:s005)─┐ ────────────────────────────────────────(gaohang@isaacgao:s005)─┐
 └─(22:59:03)──> ./cmd.ts haha xixi                                           ──(Sun,Jun30)─┘                                                   ──(Sat,Jun29)─┘
 hello world                                                                                  'string'.
@@ -167,7 +165,7 @@ hello world                                                                     
 
 新建add.ts，执行
 
-```
+```js
 #!/usr/bin/env ts-nod
 let a: number = process.argv[2];
 let b: number = process.argv[3];
@@ -181,7 +179,7 @@ console.log(a + b);
 
 进一步，vscode提供了一处便利，按住cmd同时光标指向`process.argv`就可以定位到index.d.ts中全局process的源代码
 
-```
+```js
 interface Process extends EventEmitter {
         stdout: WriteStream;
         stderr: WriteStream;
@@ -199,7 +197,7 @@ interface Process extends EventEmitter {
 
 下面我们继续迭代一下add.ts
 
-```
+```js
 #!/usr/bin/env ts-node
 let a: number = parseInt(process.argv[2]);
 let b: number = parseInt(process.argv[3]);
@@ -216,7 +214,7 @@ console.log(a + b);
 
 执行后竟然报错了，摘取的关键信息如下：
 
-```
+```js
 TSError: ⨯ Unable to compile TypeScript:
 add.ts(5,12): error TS2339: Property 'isNaN' does not exist on type 'NumberConstructor'.
 add.ts(5,31): error TS2339: Property 'isNaN' does not exist on type 'NumberConstructor'.
@@ -242,7 +240,7 @@ add.ts(5,31): error TS2339: Property 'isNaN' does not exist on type 'NumberConst
 
 如果觉得代码很乱，需要优化，就使用提取函数法，把功能提取成一个函数。
 
-```
+```js
 if (!n) {
     n = 1
 }
@@ -260,7 +258,7 @@ public：类里面写public + 参数代表student有三个属性，相当于把�
 
 下面通过一个简单的命令行打印家谱的程序来进一步理解typescript类型的基本使用。
 
-```
+```js
 function createTabs(n: number): string {
   return '----'.repeat(n);
 }
@@ -313,6 +311,3 @@ grandFather.introduceFamily()
 ------------王舅舅二儿子的女儿
 --------王舅舅三儿子
 ```
-
-
-

@@ -1,7 +1,5 @@
 # 泛型
 
-标签（空格分隔）： Typescript
-
 ---
 
 泛型就是用一个东西表示广泛的类型，对传入的参数类型和返回的类型可以定义。T指的是这个函数的类型。
@@ -10,7 +8,7 @@
 
 函数用ts数据类型，想要同时返回string类型和number类型，如下：
 
-```
+```js
 function getData1(value:string):string{
     return value;
 }
@@ -23,7 +21,7 @@ function getData2(value:number):number{
 
 > 表示泛型，调用的时候指定T的数据类型
 
-```
+```js
 function dataT<T> (value: T): T { // <类型变量名>表明函数属性泛型，传入参数为T，返回值为T
     return value
 }
@@ -37,7 +35,7 @@ let getData2 = dataT<number>(1234) // 调用指定泛型为number类型，则传
 
 一般，声明泛型有以下两种方法：
 
-```
+```js
 function gen_func1<T>(arg: T): T {
     return arg;
 }
@@ -49,7 +47,7 @@ let gen_func2: <T>(arg: T) => T = function (arg) {
 
 调用方式也有两种：
 
-```
+```js
 gen_func1<string>('Hello world');
 gen_func2('Hello world'); 
 // 第二种调用方式可省略类型参数，因为编译器会根据传入参数来自动识别对应的类型。
@@ -63,7 +61,7 @@ gen_func2('Hello world');
 
 使用泛型之前：只能在类的类部指定数据类型，实现需求还要写一套string类型的类
 
-```
+```js
 class MinClass{
     public list:number[]=[];
     add(num:number){
@@ -88,7 +86,7 @@ alert(m.min());
 
 使用泛型之后：只用一套类来实现
 
-```
+```js
 class MinClassT<T>{ // 泛型类型跟在类名后面
     public list:T[]=[];
     add(value:T):void{
@@ -119,7 +117,7 @@ alert(m2.min())
 
 如下，一个函数类型的接口
 
-```
+```js
 interface ConfigFn{
     (value:string):string;
 }
@@ -134,7 +132,7 @@ setData('name');
 
 泛型接口有两种写法
 
-```
+```js
 // 泛型接口定义方式一
 interface ConfigFnOne{
     <T>(value:T):T;
@@ -160,7 +158,7 @@ setDataTwoFn('name');
 
 ## 泛型约束
 
-```
+```js
 function returnIt<T>(arg: T): T{
     console.log(arg.length) // error
     return arg;

@@ -1,7 +1,5 @@
 # 接口
 
-标签（空格分隔）： Typescript
-
 ---
 
 ## 理解接口
@@ -12,7 +10,7 @@
 
 看个简单的例子： 
 
-```
+```js
 // 传入参数必须是对象，对象属性有类型约束
 function printLabel(label: {label: string, size: number}) {
   console.log(`${label.label}${label.size}`);
@@ -21,7 +19,7 @@ var labelJson = {label: 'amoy', size: 99} // 这个对象满足约束条件，�
 printLabel(labelJson) // amoy99
 ```
 复杂一些的例子，其实我们可以把interface理解为**要求**
-```
+```js
 // 要求Human的类型和属性
 interface Shape {
     head: string;
@@ -55,7 +53,7 @@ isaacgao.name = 'gao' // Cannot assign to 'name' because it is a read-only prope
 
 ## 属性接口
 
-```
+```js
 interface fullName { // 对函数传参进行约束，
   firstName: string; // 注意 分号结束
   lastName: string;
@@ -103,7 +101,7 @@ ajax({
 
 ## 函数接口
 
-```
+```js
 // 注意写法  同样支持批量约束
 interface encrypt {
   (key: string, val: string): string;
@@ -119,7 +117,7 @@ console.log(md5('isaac', 'kao')); //isaackao
 
 可以约束属性和值的类型
 
-```
+```js
 // ts中定义数组的方式
 var arr1: number[] = [1,23,4,5]
 var arr2: Array<number> = [122,33,4,24,23,5423,4]
@@ -144,7 +142,7 @@ var obj: userObj = {name: 'isaac', age: '25'}
 
 和抽象类有点相似，父类定义一个标准，子类实现接口标准
 
-```
+```js
 // 有点像属性和方法接口整合到一起
 interface Animal {
   name: string;
@@ -186,7 +184,7 @@ console.log(t.eat('吃人!')); //猛虎吃人!
 
 注意，如果继承（包括多重继承）的两个interface有相冲突的属性或类型，会报错！
 
-```
+```js
 interface Animal {
     move(): void;
 }
@@ -222,7 +220,7 @@ gao.move()
 1. 接口可以相互继承
 2. 类不仅可以继承父类，还可以实现接口
 
-```
+```js
 {
   interface Animal {
     eat(): void;
