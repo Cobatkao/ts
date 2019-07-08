@@ -1,5 +1,3 @@
-import { log } from "util";
-
 // =======类的定义=======
 // es5
 // function Person(name) {
