@@ -10,6 +10,10 @@ typescript是一门遵从面向对象设计的语言，相比js，一方面提�
 
 ## Reosurces
 
+- [Typescript文档](https://www.runoob.com/manual/gitbook/TypeScript/_book/doc/handbook)
+
+菜鸟教程出品，例子浅显易懂，但是比较久没有更新了
+
 - [TypeScript入门教程](https://ts.xcatliu.com/)
 
 文档类型，篇幅较短，适合快速学习，查阅资料
